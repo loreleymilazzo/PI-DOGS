@@ -18,8 +18,10 @@ const router = Router();
             image: el.image.url,
             name: el.name,
             temperament: el.temperament,
-            weight: el.weight.imperial,
-            height: el.height.imperial,
+            minWeight: Number(el.weight.metric.slice(0,2)),
+            maxWeight: Number(el.weight.metric.slice(4)),
+            minHeight: Number(el.height.metric.slice(0,2)),
+            maxHeight: Number(el.height.metric.slice(4)),
             life_span: el.life_span,
         }
     })
@@ -31,7 +33,7 @@ const getDbInfo = async () => {
     return await Dog.findAll({
       include: {
         model: Temperament,
-        attributes: ["name"],
+        attributes: ['name'],
         through: {
     
           attributes: [],
@@ -42,8 +44,8 @@ const getDbInfo = async () => {
 
  
  const getAllDogs  = async () => {
-    const apiInfo = await getApiInfo();
-    const dbInfo = await getDbInfo();
+    const apiInfo = await getApiInfo(); //ejecuto la llamada a la api
+    const dbInfo = await getDbInfo(); //ejecuto la llamada a la db 
     const infoTotal = apiInfo.concat(dbInfo);
     return infoTotal;
   };
@@ -55,7 +57,7 @@ const getDbInfo = async () => {
         let dogsName = await dogsTotal.filter(el => el.name.toLowerCase().includes(name.toLowerCase())) 
         dogsName.length ?
         res.status(200).send(dogsName) :
-        res.status(404).send( "No está el perrito :C");
+        res.status(404).send( "No se encuentra esa raza");
     } else{
         res.status(200).send(dogsTotal)
     
@@ -71,6 +73,7 @@ const getDbInfo = async () => {
    
    const filtrado = temperamentsBd.filter(e => e);
    const filtradoEach =[... new Set (filtrado)];
+   console.log(filtradoEach)
    filtradoEach.forEach(el =>{
       Temperament.findOrCreate({// se fija si esta y si no esta lo crea 
          where: {name: el},
@@ -82,24 +85,29 @@ const getDbInfo = async () => {
 
 })
 
-router.post("/dogs", async (req, res) => {
+router.post("/dog", async (req, res) => {
     const {
       name,
-      height,
-      weight,
+      heightMax,
+      heightMin,
+      weightMax,
+      weightMin,
       life_span,
-      temperament,
       image,
+      createdInDb,
+      temperament
+  
     } = req.body;
   
     const dogCreated = await Dog.create({
-      name:name,
-      height: height,
-      weight: weight,
-      life_span: life_span,
-      image: image,
+      name,
+      heightMax,
+      heightMin,
+      weightMax,
+      weightMin,
+      life_span,
+      image,
       createdInDb
-      
     });
 
     let temperamentDb = await Temperament.findAll({
