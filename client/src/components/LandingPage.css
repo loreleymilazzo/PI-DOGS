@@ -21,3 +21,11 @@
     transform: translate(0);
     box-shadow: none;
   }
+
+  .letters {
+    height: 53%;
+    margin-top: 4%;
+    width: 100%;
+    font-size: 70px;
+    font-family: "fantasy";
+  }

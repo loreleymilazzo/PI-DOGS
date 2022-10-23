@@ -1,0 +1,15 @@
+.dog_map{
+    text-align: center;
+   display:inline-flex;
+   flex-wrap: wrap;
+   margin: 0; 
+   padding: 0;
+   }
+
+.letters2 {
+    height: 40%;
+    margin-top: 4%;
+    width: 100%;
+    font-size: 70px;
+    font-family: "fantasy";
+  }

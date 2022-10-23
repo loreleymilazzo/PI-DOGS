@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export function getDogs(){
     return async function(dispatch){
-    var json = await axios.get("http://localhost:3001/dogs");
+    var json = await axios.get("http://localhost:3001/dogs" );
     return dispatch ({  
         type:"GET_DOGS",
         payload: json.data
@@ -24,17 +24,13 @@ export function getNameDogs(name){ //por payload va a llegar lo que el usuario m
     }
 }
 
-export const getTemperaments = () => {
-    return async (dispatch) => {
-        try {
-            const { data } = await axios.get(`http://localhost:3001/temperaments`)
+export function getTemperaments() {
+    return async function (dispatch) {
+            const {data} = await axios.get(`http://localhost:3001/temperaments`)
             return dispatch({
                 type: "GET_TEMPERAMENTS",
                 payload: data
             })
-        } catch(err) {
-            console.log(err)
-        }
     }
 }
 

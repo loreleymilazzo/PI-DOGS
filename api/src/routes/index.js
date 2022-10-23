@@ -18,10 +18,10 @@ const router = Router();
             image: el.image.url,
             name: el.name,
             temperament: el.temperament,
-            minWeight: Number(el.weight.metric.slice(0,2)),
-            maxWeight: Number(el.weight.metric.slice(4)),
-            minHeight: Number(el.height.metric.slice(0,2)),
-            maxHeight: Number(el.height.metric.slice(4)),
+            weightMin: Number(el.weight.metric.slice(0,2)),
+            weightMax: Number(el.weight.metric.slice(4)),
+            heightMin: Number(el.height.metric.slice(0,2)),
+            heightMax: Number(el.height.metric.slice(4)),
             life_span: el.life_span,
         }
     })
@@ -30,7 +30,7 @@ const router = Router();
 }
 
 const getDbInfo = async () => {
-    return await Dog.findAll({
+    return await Dog.findAll({  
       include: {
         model: Temperament,
         attributes: ['name'],
@@ -71,7 +71,7 @@ const getDbInfo = async () => {
    .trim()// eliminar espacios en blanco y tablulaciones
    .split(/\s*,\s*/);//Esto imprime dos líneas; la primera línea imprime la cadena original, y la segunda línea imprime el array resultante.
    
-   const filtrado = temperamentsBd.filter(e => e);
+   const filtrado = temperamentsBd.filter(e => e); 
    const filtradoEach =[... new Set (filtrado)];
    console.log(filtradoEach)
    filtradoEach.forEach(el =>{

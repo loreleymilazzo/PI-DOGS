@@ -2,17 +2,17 @@
 
 const initialState = {
         dogs: [],
+        allDogs:[],//estado que siempre va a tener todos los vg para los filtros. Al usar state.allDogs en lugar de state.dogs, cada vez que aplique un filtro, state.dogs va a cambiar,
         detail: [],
         temperament:[],
-        allDogs:[]
+        
 }
 
 function rootReducer (state= initialState, action){
-  
-        switch (action.type){
-            case "GET_DOGS":
+switch (action.type){
+  case "GET_DOGS":
             
-            return{
+    return{
                 ...state, 
                 dogs: action.payload,
                 allDogs: action.payload 
@@ -48,15 +48,15 @@ function rootReducer (state= initialState, action){
 
              case "ORDER_BY_WEIGHT":
       const sortedWeight =
-        action.payload === "minWeight"
+        action.payload === "weightMin"
           ? state.dogs.sort((a, b) => {
-              if (parseInt(a.minWeight) < parseInt(b.minWeight)) return -1; // si el peso de a es menor que el de b, a va antes que b
-              if (parseInt(a.minWeight) > parseInt(b.minWeight)) return 1; // si el peso de a es mayor que el de b, a va despues que b
+              if (parseInt(a.weightMin) < parseInt(b.weightMin)) return -1; // si el peso de a es menor que el de b, a va antes que b
+              if (parseInt(a.weightMin) > parseInt(b.weightMin)) return 1; // si el peso de a es mayor que el de b, a va despues que b
               return 0;
             })
           : state.dogs.sort((a, b) => {
-              if (parseInt(a.minWeight) > parseInt(b.minWeight)) return -1; // si el peso de a es mayor que el de b, a va antes que b
-              if (parseInt(a.minWeight) < parseInt(b.minWeight)) return 1; // si el peso de a es menor que el de b, a va despues que b
+              if (parseInt(a.weightMin) > parseInt(b.weightMin)) return -1; // si el peso de a es mayor que el de b, a va antes que b
+              if (parseInt(a.weightMin) < parseInt(b.weightMin)) return 1; // si el peso de a es menor que el de b, a va despues que b
               return 0;
             });
       return {
@@ -70,7 +70,7 @@ function rootReducer (state= initialState, action){
         }
 
 
-       
+
 
              case 'FILTER_CREATED':
                 const allDogs2 = state.allDogs

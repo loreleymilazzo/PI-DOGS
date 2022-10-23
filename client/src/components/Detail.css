@@ -1,0 +1,10 @@
+.cardDetail {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    color: rgb(33, 19, 46);
+    width: auto;
+
+}

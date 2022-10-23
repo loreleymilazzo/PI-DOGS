@@ -2,6 +2,7 @@ import {React , useEffect} from "react";
 import {Link } from 'react-router-dom'
 import {useDispatch , useSelector} from 'react-redux'
 import { getDetail } from "../actions/actions.js";
+import "./Detail.css";
 
 export default function Detail(props){
   console.log(props)
@@ -15,19 +16,19 @@ export default function Detail(props){
   const myDog = useSelector ((state) => state.detail)
 
     return (
-      <body className= "body">
-      <div>
+      
+      <div className= "cardDetail">
       {
              myDog.length>0 ?
-             <div >
-                 <h1 className= "nombreDetail">{myDog[0].name}</h1>
-                 <img src={myDog[0].image}/>
-                 <div className="infoDetail">
+             <div  >
+                 <h1 >{myDog[0].name}</h1>
+                 <img  src={myDog[0].image}/>
+                 <div >
                  {/* <h3>Id: {myDog[0].id}</h3> */}
                  
-                 <h2 >Weight:</h2><p >{myDog[0].minWeight} kgs -  {myDog[0].maxWeight} kgs </p>
+                 <h2 >Weight:</h2><p >{myDog[0].weightMin} kgs -  {myDog[0].weightMax} kgs </p>
 
-                 <h2 > Height: </h2> <p > {myDog[0].minHeight} cm - {myDog[0].maxHeight} cm   </p> 
+                 <h2 > Height: </h2> <p > {myDog[0].heightMin} cm - {myDog[0].heightMax} cm   </p> 
                  
                  <h3>Temperament: {!myDog[0].createdInDb? myDog[0].temperament + ' ' : myDog[0].temperament} </h3>
 
@@ -38,11 +39,11 @@ export default function Detail(props){
               
           }
 
-           <Link to= '/home'>
+<Link to= '/home'>
               <button className= "buttonDetail">Home</button>
           </Link>
       </div>
-      </body>
+     
       )
 
       };
@@ -76,7 +77,7 @@ export default function Detail(props){
 //                     <strong>Temperament</strong> <br />
 //                     {e.temperament
 //                       ? e.temperament.join(", ")
-//                       : e.temperaments
+//                       : e.
 //                       ? e.temperaments.join(", ")
 //                       : "No temperaments"}
 //                   </p>

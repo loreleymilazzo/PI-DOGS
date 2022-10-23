@@ -6,6 +6,7 @@ import {Link} from "react-router-dom";
 import Card from "./Card"; 
 import Paginado from "./Paginado";
 import SearchBar from "./SearchBar";
+import "./Home.css";
 
 export default function Home () {
     const dispatch = useDispatch();
@@ -67,7 +68,7 @@ export default function Home () {
     return (
         <div>
             <Link to = "/dog"> Crea tu perro</Link>
-            <h1> WIKI PERROS </h1>
+            <h1 className= "letters2"> WIKI PERROS </h1>
             <button onClick= {e=> {handleClick(e)}}>
             Volver a cargar todos los personajes 
         </button>
@@ -78,8 +79,8 @@ export default function Home () {
             </select>
 
             <select onChange={(e) => handleOrderByWeight(e)}>
-                <option value="minWeight">Tamaño pequeño</option>
-                <option value="maxWeight">Tamaño grande </option>
+                <option value="weightMin">Tamaño pequeño</option>
+                <option value="weightMax">Tamaño grande </option>
             </select>
              <select onChange={e=> handleFilterTemperaments(e)}>
                 <option value="Temperaments">
@@ -107,10 +108,10 @@ export default function Home () {
         { currentDogs?.map((e) =>{
             console.log("este es el id" , e.id)
             return (
-              <div>
+              <div key={e.id} className= "dog_map">
                
-                  <Link to={"/home/detail/" + e.id}>
-                    <Card name={e.name} image={e.image} temperament={e.temperament} minWeight={e.minWeight} maxWeight={e.maxWeight} />
+                  <Link  to={"/home/detail/" + e.id}>
+                    <Card  name={e.name} image={e.image} temperament={e.temperament} weightMin={e.weightMin} weightMax={e.weightMax} />
                   </Link>
                   </div>
                

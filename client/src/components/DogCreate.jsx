@@ -1,45 +1,39 @@
 import React, {useState, useEffect} from 'react';
-import {Link, useHistory} from 'react-router-dom' ;
-import {postDog, getTemperaments} from '../actions/actions.js';
-import { useDispatch, useSelector } from 'react-redux';
+import {Link, useHistory} from 'react-router-dom';
+import { postDog, getTemperaments } from '../actions/actions.js';
+import { useDispatch, useSelector } from "react-redux";
 
 
-export default function DogCreate (){
+export default function DogCreate(){
+
     const dispatch = useDispatch();
     const history = useHistory();
-    const temperament = useSelector((state) => state.temperament)
-
+    const temperaments = useSelector((state)=>state.temperament)
+   
 
     const [input, setInput] = useState({
         name: "",
-        temperament: [],
-        heightMax: "0",
-        heightMin: "0",
-        weightMax: "0",
-        weightMin: "0",
+        image: "",
+        heightMax: "",
+        heightMin: "",
+        weightMax: "" ,
+        weightMin: "" ,
         life_span: "",
-        image:"",
-
-
+        temperament: [],
     })
-
-    useEffect(() =>{
-        dispatch(getTemperaments())
-    }, [])
 
     function handleChange(e){
         setInput({
             ...input,
             [e.target.name] : e.target.value
         })
-        
         console.log(input)
     }
 
     function handleSelect(e){
         setInput({
             ...input,
-            types: [...input.type, e.target.value]
+            temperament: [...input.temperament, e.target.value]
         })
     }
 
@@ -47,44 +41,52 @@ export default function DogCreate (){
         e.preventDefault();
         console.log(input)
         dispatch(postDog(input))
-        alert("Raza creada")
+        alert("Perro creado")
         setInput({
-            name: "",
-            temperament: [],
-            heightMax: 0,
-            heightMin: 0,
-            weightMax: 0,
-            weightMin: 0,
-            life_span: 0,
-            image:"",
+        name: "",
+        image: "",
+        heightMax: "",
+        heightMin: "",
+        weightMax: "" ,
+        weightMin: "" ,
+        life_span: "",
+        temperament: [],
         })
         history.push('/home')
     }
-    
+
     function handleDelete(el){
         setInput({
             ...input,
-            temperament: input.temperament.filter(te => te !== el)
+            type: input.type.filter(typ => typ !== el)
         })
     }
 
+    useEffect(()=>{
+        dispatch(getTemperaments())
+    },[])
 
-    return (
-        <div>   
-            <Link to= '/home'> <button> Volver </button></Link>
-            <h1>Crea tu raza de perro</h1>
+    
+    return(
+        
+        <div>
+
+        <Link to= '/Home'><button >Volver</button></Link>
+            
+            <h1 >Crea tu perro</h1>
+           
             <form onSubmit={(e)=>handleSubmit(e)}>
-            <div>
+                <div >
                 <label>Nombre: </label>
                 <input
                 type= "text" 
                 value= {input.name}
                 name= "name"
                 onChange={(e)=>handleChange(e)}
-
                 />
-            </div>
-            <div>
+                    
+                </div>
+                <div >
                 <label>Altura Maxima: </label>
                 <input 
                  type= "number" 
@@ -92,8 +94,8 @@ export default function DogCreate (){
                  name= "heightMax"
                  onChange={(e)=>handleChange(e)}
                 />
-            </div>
-            <div>
+                </div>
+                <div >
                 <label>Altura Minima: </label>
                 <input 
                  type= "number" 
@@ -101,8 +103,8 @@ export default function DogCreate (){
                  name= "heightMin"
                  onChange={(e)=>handleChange(e)}
                 />
-            </div>
-            <div>
+                </div>
+                <div >
                 <label>Peso Maximo: </label>
                 <input 
                  type= "number" 
@@ -110,8 +112,8 @@ export default function DogCreate (){
                  name= "weightMax"
                  onChange={(e)=>handleChange(e)}
                 />
-            </div>
-            <div>
+                </div>
+                <div >
                 <label>Peso Minimo: </label>
                 <input 
                  type= "number" 
@@ -119,8 +121,9 @@ export default function DogCreate (){
                  name= "weightMin"
                  onChange={(e)=>handleChange(e)}
                 />
-            </div>
-            <div>
+                  
+                </div>
+                <div>
                 <label>Años de vida: </label>
                 <input 
                  type= "number" 
@@ -128,33 +131,31 @@ export default function DogCreate (){
                  name= "life_span"
                  onChange={(e)=>handleChange(e)}
                 />
-            </div>
-            <div>
+                </div>
+                <div >
                 <label>Imagen: </label>
                 <input 
-                 type= "text" 
+                 type= "url" 
                  value= {input.image}
                  name= "image"
                  onChange={(e)=>handleChange(e)}
                 />
-            </div>
-            <select onChange={(e)=> handleSelect(e)}>
-                    {temperament.map((tempe) => (
-                        <option key={tempe.name} value= {tempe.name}> {tempe.name}</option>
+                </div>
+
+                <select onChange={(e)=> handleSelect(e)}>
+                    {temperaments.map((temp) => (
+                        <option value= {temp.name} key={temp.id}> {temp.name}</option>
                     ))}
                 </select>
                 <ul><li>{input.temperament.map(el => el + " ,")}</li></ul>
-                <button type= 'submit'>Crear raza</button>
-
+                <button type= 'submit'>Crear Personaje</button>
             </form>
-
             {input.temperament.map(el=>
-                <div >
+                <div className= 'typeDiv'>
                     <p>{el}</p>
                     <button className="btn" onClick= {()=> handleDelete(el)}>x</button>
                     </div>
                     )}
         </div>
     )
-
 }
