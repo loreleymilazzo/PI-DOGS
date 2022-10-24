@@ -17,14 +17,21 @@ export default function Detail(props){
 
     return (
       
-      <div className= "cardDetail">
+      <div className= "cardContainer">
       {
              myDog.length>0 ?
              <div  >
-                 <h1 >{myDog[0].name}</h1>
-                 <img  src={myDog[0].image}/>
-                 <div >
+        
+         
+         
+                 
+                 
+                 <div  >
                  {/* <h3>Id: {myDog[0].id}</h3> */}
+
+                 <h1 className="cardTitle" >{myDog[0].name}</h1>
+
+                 <img  className= "imagdetalle" src={myDog[0].image} alt="img dog" width="550px" height="350px"/>
                  
                  <h2 >Weight:</h2><p >{myDog[0].weightMin} kgs -  {myDog[0].weightMax} kgs </p>
 
@@ -40,7 +47,7 @@ export default function Detail(props){
           }
 
 <Link to= '/home'>
-              <button className= "buttonDetail">Home</button>
+              <button className= "boton">Home</button>
           </Link>
       </div>
      

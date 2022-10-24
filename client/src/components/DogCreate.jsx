@@ -215,7 +215,7 @@ export default function DogCreate(){
                 />
                 {errors.image && <p >{errors.image}</p>}
                 </div>
-
+                <label>Temperamento: </label>
                 <select onChange={(e)=> handleSelect(e)}>
                     {temperament.map((temp) => (
                         <option value= {temp.name} key={temp.id}> {temp.name}</option>

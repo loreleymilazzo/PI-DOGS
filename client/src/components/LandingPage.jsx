@@ -10,7 +10,7 @@ export default function LandingPage () {
                 <br/>
                 <br/>
             <h1 className= "letters">¿Cuál es tu raza favorita?</h1>
-            <p> Elegí la que más te guste o creá una nueva</p>
+            <p className="subtit"> Elegí la que más te guste, o creá una nueva!</p>
         
             <Link to='/home'>
                 <button className="button">Inicio</button>

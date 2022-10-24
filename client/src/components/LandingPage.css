@@ -29,3 +29,12 @@
     font-size: 70px;
     font-family: "fantasy";
   }
+
+  .subtit{
+    color: rgb(28, 28, 28);
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 1%;
+    font-family: "fantasy";
+}
