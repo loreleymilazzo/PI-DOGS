@@ -8,7 +8,7 @@ export default function DogCreate(){
 
     const dispatch = useDispatch();
     const history = useHistory();
-    const temperaments = useSelector((state)=>state.temperament)
+    const temperament = useSelector((state)=>state.temperament)
    
 
     const [input, setInput] = useState({
@@ -143,7 +143,7 @@ export default function DogCreate(){
                 </div>
 
                 <select onChange={(e)=> handleSelect(e)}>
-                    {temperaments.map((temp) => (
+                    {temperament.map((temp) => (
                         <option value= {temp.name} key={temp.id}> {temp.name}</option>
                     ))}
                 </select>

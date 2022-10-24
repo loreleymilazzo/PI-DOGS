@@ -83,7 +83,7 @@ export default function Home () {
                 <option value="weightMax">Tamaño grande </option>
             </select>
              <select onChange={e=> handleFilterTemperaments(e)}>
-                <option value="Temperaments">
+                <option value="temperament">
                     Todos los temperamentos
                 </option>
                 {allTemperaments && allTemperaments.map((e) => (
@@ -106,12 +106,12 @@ export default function Home () {
 <SearchBar />
 
         { currentDogs?.map((e) =>{
-            console.log("este es el id" , e.id)
+           //ordenar temperaments 
             return (
               <div key={e.id} className= "dog_map">
                
                   <Link  to={"/home/detail/" + e.id}>
-                    <Card  name={e.name} image={e.image} temperament={e.temperament} weightMin={e.weightMin} weightMax={e.weightMax} />
+                    <Card  name={e.name} image={e.image} temperament={e.temperament ? e.temperament : (e.temperaments?.map((t) => t.name)) } weightMin={e.weightMin} weightMax={e.weightMax} />
                   </Link>
                   </div>
                

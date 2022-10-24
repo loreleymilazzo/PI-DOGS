@@ -33,7 +33,7 @@ switch (action.type){
              case "FILTER_TEMPERAMENT" :   
              const allDogs = state.allDogs;
              let filteredDogs
-             if (action.payload === "Temperaments") {
+             if (action.payload === "temperament") {
                filteredDogs = allDogs
              } else {
                filteredDogs = 
