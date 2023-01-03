@@ -6,7 +6,7 @@ import "./DogCreate.css";
 
 function validate(input) {
     let errors = {};                             //genero un objeto errores
-    if (!input.name) {                           //input es mi estado local, si en mi estadolocal.name no hay nada
+    if (!input.name) {                           // input es mi estado local, si en mi estadolocal.name no hay nada
         errors.name = "Debe colocar un nombre";        //entonces en mi objeto.name pongo un string que diga se requiere un nombre
     }  else if (!input.heightMax) {
         errors.heightMax = "Debe colocar altura máxima";
@@ -103,12 +103,7 @@ export default function DogCreate(){
         history.push('/home')
     }
 
-    function handleDelete(el){
-        setInput({
-            ...input,
-            type: input.type.filter(typ => typ !== el)
-        })
-    }
+   
 
     useEffect(()=>{
         dispatch(getTemperaments())
@@ -218,18 +213,16 @@ export default function DogCreate(){
                 <label>Temperamento: </label>
                 <select onChange={(e)=> handleSelect(e)}>
                     {temperament.map((temp) => (
-                        <option value= {temp.name} key={temp.id}> {temp.name}</option>
+                        <option value= {temp.name} key={temp.id}>
+                             {temp.name} 
+                              </option>
                     ))}
                 </select>
-                <ul><li>{input.temperament.map(el => el + " ,")}</li></ul>
+                <ul>
+                        <li>{input.temperament.map(el => el )}</li> </ul>
                 <button className="button-crear" type= 'submit'>Crear Personaje</button>
             </form>
-            {input.temperament.map(el=>
-                <div className= 'typeDiv'>
-                    <p>{el}</p>
-                    <button className="btn" onClick= {()=> handleDelete(el)}>x</button>
-                    </div>
-                    )}
+            
         </div>
     )
 }

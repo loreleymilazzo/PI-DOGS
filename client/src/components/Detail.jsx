@@ -20,11 +20,7 @@ export default function Detail(props){
       <div className= "cardContainer">
       {
              myDog.length>0 ?
-             <div  >
-        
-         
-         
-                 
+             <div  >        
                  
                  <div  >
                  {/* <h3>Id: {myDog[0].id}</h3> */}
@@ -33,11 +29,11 @@ export default function Detail(props){
 
                  <img  className= "imagdetalle" src={myDog[0].image} alt="img dog" width="550px" height="350px"/>
                  
-                 <h2 >Weight:</h2><p >{myDog[0].weightMin} kgs -  {myDog[0].weightMax} kgs </p>
+                 <h2 >Weight:</h2><p >{myDog[0].weightMin} kg -  {myDog[0].weightMax} kgs </p>
 
                  <h2 > Height: </h2> <p > {myDog[0].heightMin} cm - {myDog[0].heightMax} cm   </p> 
                  
-                 <h3>Temperament: {!myDog[0].createdInDb? myDog[0].temperament + ' ' : myDog[0].temperament} </h3>
+                 <h3>Temperament: {!myDog[0].createdInDb? myDog[0].temperament + " " : myDog[0].temperaments.map(el => el.name + (" "))} </h3>
 
                  <h3>Life span: {myDog[0].life_span}</h3> 
                  <br/>
@@ -56,46 +52,3 @@ export default function Detail(props){
       };
 
 
-
-//         <div>
-//             <Link to = '/home'>
-//                 <button>Volver</button>
-//             </Link>
-
-//             { myDog.length > 0 ? 
-//             <div>
-
-//                 <h1> {myDog[0].name}</h1> 
-//                 <h1> {<img src={myDog[0].image} alt="img not found" width='500px' height='500px'/>}</h1>
-//                 <div>
-//                   <p>
-//                     <strong>Height</strong> <br /> Min. {e.heightMin} cm - Max.{" "}
-//                     {e.heightMax} cm{" "}
-//                   </p>
-//                   <p >
-//                     <strong>Weight</strong> <br /> Min. {e.weightMin} kg - Max.{" "}
-//                     {e.weightMax} kg
-//                   </p>
-//                   <p >
-//                     {" "}
-//                     <strong>Life Span</strong> <br /> {e.life_span}
-//                   </p>
-//                   <p >
-//                     <strong>Temperament</strong> <br />
-//                     {e.temperament
-//                       ? e.temperament.join(", ")
-//                       : e.
-//                       ? e.temperaments.join(", ")
-//                       : "No temperaments"}
-//                   </p>
-//                 </div>
-//                 </div> : <p> ... Loading </p>
-          
-           
-//             }  
-           
-//             </div>
-
-    
-//     )
-// } 

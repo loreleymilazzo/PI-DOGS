@@ -15,9 +15,13 @@ export default function SearchBar () {
 
     }
 
-    function handleSubmit(e){
-        e.preventDefault()
+    let handleSubmit=(e)=>{
+        
+            e.preventDefault()
         dispatch(getNameDogs(name))
+
+   
+        
     }
 
     return (
